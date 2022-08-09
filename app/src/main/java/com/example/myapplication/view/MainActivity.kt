@@ -4,19 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.viewModel.CityViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: CityViewModel by viewModels()
+    //    private val viewModel: CityViewModel by viewModels()
+    private lateinit var viewModel: CityViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        this.viewModel = ViewModelProvider(this)[CityViewModel::class.java]
+        this.binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
     }
